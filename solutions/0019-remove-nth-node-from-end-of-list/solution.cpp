@@ -25,9 +25,9 @@ public:
             return temp;
         }
 
-        int cnt=0;
+        int cnt=1;
         temp=head;
-        while(cnt!=sz-n-1){
+        while(cnt!=sz-n){
             cnt++;
             temp=temp->next;
 
