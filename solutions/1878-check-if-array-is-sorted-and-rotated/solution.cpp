@@ -1,14 +1,18 @@
 class Solution {
 public:
     bool check(vector<int>& nums) {
-        vector<int>b(nums.size());
-    for(int x=0;x<nums.size();x++){
-        for(int i=0;i<nums.size();i++){
-            b[i]=nums[(i+x)%nums.size()];
+        int dec_cnt=0;
+        for(int i=0;i<nums.size()-1;i++){
+            if(nums[i]>nums[i+1])
+            dec_cnt++;
+
+            if(dec_cnt>1)
+            return false;
         }
-        if(is_sorted(b.begin(),b.end()))
-        return true;
-    }
-    return false;
+        if(dec_cnt==0) return true;
+        if(nums[nums.size()-1]<=nums[0]) return true;
+
+        return false;
+
     }
 };
