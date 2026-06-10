@@ -1,27 +1,29 @@
 class Solution {
 public:
-    void combination(int i,vector<int> &arr,vector<int> &temp,vector<vector<int>> &ans){
+    void solve(int i,vector<int> &arr,vector<int> &temp,set<vector<int>>&s){
+        if(i==arr.size()){
+            s.insert(temp);
+            return;
+        }
 
-        
-            ans.push_back(temp);
+       temp.push_back(arr[i]);
+       solve(i+1,arr,temp,s);
+       temp.pop_back();
+       solve(i+1,arr,temp,s);
             
-
-        for(int j=i;j<arr.size();j++){
-            if(j>i && arr[j]==arr[j-1]) continue;
-            
-
-            temp.push_back(arr[j]);
-            combination(j+1,arr,temp,ans);
-            temp.pop_back();
-        }    
+          
+         
     }
 
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         sort(nums.begin(),nums.end());
-         vector<int>temp;
+        vector<int>temp;
         vector<vector<int>>ans;
-        
-        combination(0,nums,temp,ans);
+        set<vector<int>>s;
+        solve(0,nums,temp,s);
+        for(auto it=s.begin();it!=s.end();it++){
+            ans.push_back(*it);
+        }
         
         return ans;   
     }
