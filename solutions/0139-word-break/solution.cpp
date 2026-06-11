@@ -2,8 +2,8 @@ class Solution {
 public:
     unordered_set<string> st;
     bool solve(int i, string& s, vector<int>& dp) {
-        if (i >= s.size())
-            return 1;
+        if (i == s.size())
+            return true;
 
         if (dp[i] != -1)
             return dp[i];
@@ -12,11 +12,13 @@ public:
            
             string curr = s.substr(i, end-i+1);
 
-            if (st.count(curr) && solve(end+1 ,s, dp))
-                return dp[i] = 1;
+            if (st.count(curr)){
+              if(solve(end+1 ,s, dp)){
+                return dp[i] = true;
+              }
+            }
         }
-
-        return dp[i] = 0;
+        return dp[i] = false;
     }
     bool wordBreak(string s, vector<string>& wordDict) {
 
