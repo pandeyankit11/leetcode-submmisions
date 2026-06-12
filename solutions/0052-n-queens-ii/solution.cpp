@@ -33,9 +33,9 @@ public:
         return true;
     }
 
-    void solve(int col, int n, vector<string>board,vector<vector<string>>& ans) {
+    void solve(int col, int n, vector<string>board,int &count) {
         if (col == n) {
-            ans.push_back(board);
+            count++;
             return;
         }
 
@@ -43,7 +43,7 @@ public:
             if (isSafe(row, col, board, n)) {
                 board[row][col] = 'Q';
 
-                solve(col + 1, n, board, ans);
+                solve(col + 1, n, board, count);
                 board[row][col] = '.';
             }
         }
@@ -57,9 +57,9 @@ public:
             board[i] = s;
         }
 
-        vector<vector<string>> ans;
+        int count=0;
 
-        solve(0, n, board, ans);
-        return ans.size();
+        solve(0, n, board, count);
+        return count;
     }
 };
