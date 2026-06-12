@@ -14,7 +14,7 @@ public:
 
     };
     void solve(int i,string &temp,string &digits,vector<string>&ans){
-    if(i==digits.length()){
+    if(temp.size()==digits.length()){
         ans.push_back(temp);
         return;
     }
