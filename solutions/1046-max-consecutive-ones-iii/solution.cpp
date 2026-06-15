@@ -12,13 +12,10 @@ public:
           while(zero_count>k){
             if(nums[left]==0){
                 zero_count--;
-
             }
             left++;
-            
-           
-
-          }
+        }
+        
           max_len=max(max_len,right-left+1);
           
         }
