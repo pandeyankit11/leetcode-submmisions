@@ -1,19 +1,19 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        if(nums.size()==1) return true;
-        
-        int zero_count=count(nums.begin(),nums.end(),0);
-        if(zero_count==0) return true;
-        int maxIdx=0;
-        for(int i=0;i<nums.size();i++){
-            if(i>maxIdx) return false;
-            maxIdx=max(maxIdx,i+nums[i]);
+        if (nums.size() == 1)
+            return true;
+
+        int zero_count = count(nums.begin(), nums.end(), 0);
+        if (zero_count == 0)
+            return true;
+
+        int maxIdx = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (i > maxIdx)
+                return false;
+            maxIdx = max(maxIdx, i + nums[i]);
         }
-        if(maxIdx>=nums.size()-1)
-        return true;
-
-        return false;
-
+       return true;
     }
 };
