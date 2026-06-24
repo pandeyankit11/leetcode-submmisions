@@ -14,12 +14,13 @@ public:
     
         ListNode* temp=head;
         stack<int>st;
-        while(temp!=NULL){
+        while(temp!=nullptr){
             st.push(temp->val);
             temp=temp->next;
         }
 
         temp=head;
+
         while(!st.empty()){
             if(st.top()==temp->val){
                 temp=temp->next;
