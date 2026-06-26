@@ -11,23 +11,17 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root,vector<int> &ans){
-        if(root==NULL) return;
+    bool solve(TreeNode* node,long long low,long long high){
+        if(node==NULL) return true;
 
-        solve(root->left,ans);
-        ans.push_back(root->val);
-        solve(root->right,ans);
+        if(node->val<=low || node->val>=high) return false;
+
+        bool left=solve(node->left,low,node->val);
+        bool right=solve(node->right,node->val,high);
+
+        return left && right;
     }
     bool isValidBST(TreeNode* root) {
-        vector<int>ans;
-
-        solve(root,ans);
-        
-       for(int i=0;i<ans.size()-1;i++){
-        if(ans[i+1]<=ans[i]){
-            return false;
-        }
-       }
-       return true;
+        return solve(root,LONG_MIN,LONG_MAX);
     }
 };
